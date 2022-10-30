@@ -11,6 +11,7 @@ import UIKit
 class FeedViewControllerContentView: UIView {
   // MARK: Private Properties
   private let postsView = RedditPostsView()
+  private let titleLabel = UILabel()
 
   // MARK: Public Methods
   init() {
@@ -30,6 +31,7 @@ class FeedViewControllerContentView: UIView {
   // MARK: Private Methods
   private func setupViews() {
     setupPostsView()
+    setupTitleLabel()
   }
 
   private func setupPostsView() {
@@ -38,5 +40,17 @@ class FeedViewControllerContentView: UIView {
     postsView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
+  }
+
+  private func setupTitleLabel() {
+    addSubview(titleLabel)
+
+    titleLabel.snp.makeConstraints { make in
+      make.centerX.equalToSuperview()
+      make.top.equalToSuperview()
+    }
+
+    titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+    titleLabel.text = "r/Memes"
   }
 }
