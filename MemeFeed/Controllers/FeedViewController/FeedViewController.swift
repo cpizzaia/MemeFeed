@@ -24,8 +24,6 @@ class FeedViewController: UIViewController {
     contentView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-
-    view.backgroundColor = .green
   }
 
   required init?(coder: NSCoder) {

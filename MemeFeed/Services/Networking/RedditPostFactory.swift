@@ -42,7 +42,7 @@ struct RedditPostFactory {
   private func createImage(fromResponse response: RedditResponse.ImageResponse) -> Image? {
     guard
       let urlString = response.url,
-      let url = URL(string: urlString),
+      let url = URL(string: urlString.replacingOccurrences(of: "amp;", with: "")),
       let height = response.height,
       let width = response.width
     else { return nil }
