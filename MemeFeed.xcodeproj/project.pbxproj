@@ -22,6 +22,7 @@
 		AC1B0B4E290F2312002DB4C9 /* RedditPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B0B4D290F2312002DB4C9 /* RedditPostView.swift */; };
 		AC1B0B50290F245A002DB4C9 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B0B4F290F245A002DB4C9 /* Globals.swift */; };
 		AC1B0B53290F2859002DB4C9 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B0B52290F2859002DB4C9 /* ArrayExtensions.swift */; };
+		AC1B0B55290F306C002DB4C9 /* ActionPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B0B54290F306C002DB4C9 /* ActionPanelView.swift */; };
 		E61EDBA011EF02EB53CE9031 /* Pods_MemeFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3453DFF29678DA7549CC3C4F /* Pods_MemeFeed.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		AC1B0B4D290F2312002DB4C9 /* RedditPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditPostView.swift; sourceTree = "<group>"; };
 		AC1B0B4F290F245A002DB4C9 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		AC1B0B52290F2859002DB4C9 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		AC1B0B54290F306C002DB4C9 /* ActionPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPanelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				AC1B0B49290F211F002DB4C9 /* FeedViewControllerContentView.swift */,
 				AC1B0B4B290F21A8002DB4C9 /* RedditPostsView.swift */,
 				AC1B0B4D290F2312002DB4C9 /* RedditPostView.swift */,
+				AC1B0B54290F306C002DB4C9 /* ActionPanelView.swift */,
 			);
 			path = FeedViewController;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				AC1B0B4A290F211F002DB4C9 /* FeedViewControllerContentView.swift in Sources */,
 				AC1B0B28290F0278002DB4C9 /* FeedViewController.swift in Sources */,
 				AC1B0B53290F2859002DB4C9 /* ArrayExtensions.swift in Sources */,
+				AC1B0B55290F306C002DB4C9 /* ActionPanelView.swift in Sources */,
 				AC1B0B24290F0278002DB4C9 /* AppDelegate.swift in Sources */,
 				AC1B0B4E290F2312002DB4C9 /* RedditPostView.swift in Sources */,
 				AC1B0B50290F245A002DB4C9 /* Globals.swift in Sources */,
