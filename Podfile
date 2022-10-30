@@ -9,5 +9,6 @@ target 'MemeFeed' do
 
   pod 'Alamofire', '5.5.0'
   pod 'SnapKit', '5.0.1'
+  pod 'SDWebImage', '5.13.5'
 
 end

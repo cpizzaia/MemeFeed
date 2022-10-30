@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       )
     )
 
-    window?.rootViewController = ViewController()
+    window?.rootViewController = FeedViewController()
 
     window?.makeKeyAndVisible()
 

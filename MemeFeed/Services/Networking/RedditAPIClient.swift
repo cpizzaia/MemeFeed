@@ -28,7 +28,7 @@ struct RedditAPIClient {
     self.postFactory = postFactory
   }
 
-  func getMemesPosts() async -> Result<[RedditPost?], RemoteAPIJSONClient.ErrorResponse> {
+  func getMemesPosts() async -> Result<[RedditPost], RemoteAPIJSONClient.ErrorResponse> {
     let result = await makeRequest(endpoint: "r/memes.json", method: .get)
 
     switch result {
