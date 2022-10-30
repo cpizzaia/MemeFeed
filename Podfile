@@ -8,7 +8,6 @@ target 'MemeFeed' do
   # Pods for BlankProject
 
   pod 'Alamofire', '5.5.0'
-  pod 'SwiftyJSON', '5.0.1'
   pod 'SnapKit', '5.0.1'
 
 end
