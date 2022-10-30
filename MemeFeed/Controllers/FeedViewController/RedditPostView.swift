@@ -31,7 +31,7 @@ class RedditPostView: UIView {
       imageView.sd_setImage(with: post.images.last?.url)
 
       titleLabel.text = post.title
-      authorLabel.text = post.authorName
+      authorLabel.text = "u/\(post.authorName)"
     }
   }
 
@@ -40,6 +40,8 @@ class RedditPostView: UIView {
     setupImageView()
     setupTitleLabel()
     setupAuthorLabel()
+
+    backgroundColor = .black
   }
 
   private func setupImageView() {
@@ -48,15 +50,20 @@ class RedditPostView: UIView {
     imageView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
+
+    imageView.contentMode = .scaleAspectFit
   }
 
   private func setupTitleLabel() {
     addSubview(titleLabel)
 
     titleLabel.snp.makeConstraints { make in
-      make.bottom.equalToSuperview().offset(20)
+      make.bottom.equalToSuperview().offset(-20)
       make.left.equalToSuperview().offset(20)
     }
+
+    titleLabel.textColor = .white
+    titleLabel.font = .systemFont(ofSize: 17, weight: .regular)
   }
 
   private func setupAuthorLabel() {
@@ -66,6 +73,9 @@ class RedditPostView: UIView {
       make.bottom.equalTo(titleLabel.snp.top)
       make.left.equalTo(titleLabel.snp.left)
     }
+
+    authorLabel.textColor = .white
+    authorLabel.font = .systemFont(ofSize: 17, weight: .bold)
   }
 }
 

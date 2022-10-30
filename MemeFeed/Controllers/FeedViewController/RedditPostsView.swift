@@ -51,6 +51,9 @@ class RedditPostsView: UIView, UITableViewDelegate, UITableViewDataSource {
     tableView.dataSource = self
 
     tableView.isPagingEnabled = true
+    tableView.showsVerticalScrollIndicator = false
+    tableView.showsHorizontalScrollIndicator = false
+    tableView.separatorStyle = .none
   }
 
   // MARK: UITableViewDataSource Methods

@@ -21,8 +21,14 @@ class FeedViewController: UIViewController {
 
     view.addSubview(contentView)
 
+    view.backgroundColor = .black
+
     contentView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+      make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+
+      make.left.equalTo(view.snp.left)
+      make.right.equalTo(view.snp.right)
     }
   }
 
