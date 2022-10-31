@@ -23,6 +23,13 @@ class CommentView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
+  func configure(withComment comment: RedditComment) {
+    performOnMainThread { [self] in
+      accountNameLabel.text = comment.author
+      textLabel.text = comment.body
+    }
+  }
+
   // MARK: Private Methods
   private func setupViews() {
     setupAccountImageView()
