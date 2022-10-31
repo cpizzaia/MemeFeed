@@ -29,6 +29,8 @@ struct RedditPostFactory {
         }
       }
 
+      if images.isEmpty { return nil }
+
       return .init(
         id: id,
         images: images,

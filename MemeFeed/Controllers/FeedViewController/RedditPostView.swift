@@ -28,7 +28,11 @@ class RedditPostView: UIView {
 
   func configure(withPost post: RedditPost) {
     performOnMainThread { [self] in
-      imageView.sd_setImage(with: post.images.last?.url)
+      self.layoutIfNeeded()
+
+      imageView.sd_setImage(
+        with: getImage(withTargetWidth: frame.width, fromPost: post)?.url
+      )
 
       titleLabel.text = post.title
       authorLabel.text = "u/\(post.authorName)"
@@ -76,6 +80,16 @@ class RedditPostView: UIView {
 
     authorLabel.textColor = .white
     authorLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+  }
+
+  private func getImage(withTargetWidth targetWidth: CGFloat, fromPost post: RedditPost) -> Image? {
+    let sortedImages = post.images.sorted { image1, image2 in
+      image1.width <= image2.width
+    }
+
+    return sortedImages.first { image in
+      CGFloat(image.width) >= targetWidth
+    } ?? sortedImages.last
   }
 }
 
