@@ -25,6 +25,12 @@
 		AC1B0B55290F306C002DB4C9 /* ActionPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1B0B54290F306C002DB4C9 /* ActionPanelView.swift */; };
 		AC787C18290F7EA70023EB93 /* PressableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C17290F7EA70023EB93 /* PressableView.swift */; };
 		AC787C1A290F80F80023EB93 /* PressableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C19290F80F80023EB93 /* PressableImageView.swift */; };
+		AC787C1C290F82910023EB93 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C1B290F82910023EB93 /* CommentsView.swift */; };
+		AC787C1F290F830D0023EB93 /* CommentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C1E290F830D0023EB93 /* CommentsTableView.swift */; };
+		AC787C21290F833A0023EB93 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C20290F833A0023EB93 /* CommentView.swift */; };
+		AC787C23290F848D0023EB93 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C22290F848D0023EB93 /* UIColorExtensions.swift */; };
+		AC787C25290F96920023EB93 /* RedditComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C24290F96920023EB93 /* RedditComment.swift */; };
+		AC787C27290F98060023EB93 /* RedditCommentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC787C26290F98060023EB93 /* RedditCommentFactory.swift */; };
 		E61EDBA011EF02EB53CE9031 /* Pods_MemeFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3453DFF29678DA7549CC3C4F /* Pods_MemeFeed.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +58,12 @@
 		AC1B0B54290F306C002DB4C9 /* ActionPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPanelView.swift; sourceTree = "<group>"; };
 		AC787C17290F7EA70023EB93 /* PressableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableView.swift; sourceTree = "<group>"; };
 		AC787C19290F80F80023EB93 /* PressableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableImageView.swift; sourceTree = "<group>"; };
+		AC787C1B290F82910023EB93 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		AC787C1E290F830D0023EB93 /* CommentsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableView.swift; sourceTree = "<group>"; };
+		AC787C20290F833A0023EB93 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		AC787C22290F848D0023EB93 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		AC787C24290F96920023EB93 /* RedditComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditComment.swift; sourceTree = "<group>"; };
+		AC787C26290F98060023EB93 /* RedditCommentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditCommentFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +138,7 @@
 				AC1B0B3E290F06EF002DB4C9 /* RedditAPIClient.swift */,
 				AC1B0B43290F1481002DB4C9 /* RedditResponses.swift */,
 				AC1B0B45290F1A41002DB4C9 /* RedditPostFactory.swift */,
+				AC787C26290F98060023EB93 /* RedditCommentFactory.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -142,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				AC1B0B41290F119D002DB4C9 /* RedditPost.swift */,
+				AC787C24290F96920023EB93 /* RedditComment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +171,7 @@
 		AC1B0B48290F2109002DB4C9 /* FeedViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AC787C1D290F82FA0023EB93 /* CommentsView */,
 				AC1B0B27290F0278002DB4C9 /* FeedViewController.swift */,
 				AC1B0B49290F211F002DB4C9 /* FeedViewControllerContentView.swift */,
 				AC1B0B4B290F21A8002DB4C9 /* RedditPostsView.swift */,
@@ -170,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				AC1B0B52290F2859002DB4C9 /* ArrayExtensions.swift */,
+				AC787C22290F848D0023EB93 /* UIColorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -181,6 +197,16 @@
 				AC787C19290F80F80023EB93 /* PressableImageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AC787C1D290F82FA0023EB93 /* CommentsView */ = {
+			isa = PBXGroup;
+			children = (
+				AC787C1B290F82910023EB93 /* CommentsView.swift */,
+				AC787C1E290F830D0023EB93 /* CommentsTableView.swift */,
+				AC787C20290F833A0023EB93 /* CommentView.swift */,
+			);
+			path = CommentsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,9 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC1B0B4C290F21A8002DB4C9 /* RedditPostsView.swift in Sources */,
+				AC787C21290F833A0023EB93 /* CommentView.swift in Sources */,
 				AC1B0B46290F1A41002DB4C9 /* RedditPostFactory.swift in Sources */,
+				AC787C1C290F82910023EB93 /* CommentsView.swift in Sources */,
 				AC787C1A290F80F80023EB93 /* PressableImageView.swift in Sources */,
 				AC1B0B3F290F06EF002DB4C9 /* RedditAPIClient.swift in Sources */,
+				AC787C1F290F830D0023EB93 /* CommentsTableView.swift in Sources */,
 				AC1B0B44290F1481002DB4C9 /* RedditResponses.swift in Sources */,
 				AC1B0B4A290F211F002DB4C9 /* FeedViewControllerContentView.swift in Sources */,
 				AC1B0B28290F0278002DB4C9 /* FeedViewController.swift in Sources */,
@@ -310,9 +339,12 @@
 				AC1B0B24290F0278002DB4C9 /* AppDelegate.swift in Sources */,
 				AC1B0B4E290F2312002DB4C9 /* RedditPostView.swift in Sources */,
 				AC1B0B50290F245A002DB4C9 /* Globals.swift in Sources */,
+				AC787C27290F98060023EB93 /* RedditCommentFactory.swift in Sources */,
 				AC1B0B38290F0298002DB4C9 /* main.swift in Sources */,
 				AC1B0B3A290F02BE002DB4C9 /* RemoteAPIJSONClient.swift in Sources */,
+				AC787C25290F96920023EB93 /* RedditComment.swift in Sources */,
 				AC1B0B42290F119D002DB4C9 /* RedditPost.swift in Sources */,
+				AC787C23290F848D0023EB93 /* UIColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

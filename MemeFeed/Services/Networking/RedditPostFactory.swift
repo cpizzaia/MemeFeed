@@ -9,7 +9,7 @@ import Foundation
 
 struct RedditPostFactory {
   // MARK: Public Methods
-  func create(fromResponse response: RedditResponse.Root) -> [RedditPost] {
+  func create(fromResponse response: RedditResponse.Root<RedditResponse.PostResponse>) -> [RedditPost] {
     return (response.data?.children ?? []).compactMap { child -> RedditPost? in
       guard let postResponse = child?.data else { return nil }
 

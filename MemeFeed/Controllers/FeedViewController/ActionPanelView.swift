@@ -8,18 +8,28 @@
 import Foundation
 import UIKit
 
-class ActionPanelView: UIView {
+protocol ActionPanelViewDelegate: AnyObject {
+  func actionPanelViewDidTapComments(_ view: ActionPanelView, forPost post: RedditPost)
+}
+
+class ActionPanelView: UIView, ActionItemDelegate {
+  // MARK: Public Properties
+  weak var delegate: ActionPanelViewDelegate?
+
   // MARK: Private Properties
   private let stackView = UIStackView()
   private let upvoteItem = ActionItem(imageString: "UpArrow", title: "", imageSize: .init(width: 28, height: 31))
   private let messageItem = ActionItem(imageString: "Message", title: "", imageSize: .init(width: 40, height: 40))
   private let shareItem = ActionItem(imageString: "Share", title: "Share", imageSize: .init(width: 40, height: 35))
+  private var currentPost: RedditPost?
 
   // MARK: Public Methods
   init() {
     super.init(frame: .zero)
 
     setupViews()
+
+    messageItem.delegate = self
   }
 
   required init?(coder: NSCoder) {
@@ -29,6 +39,7 @@ class ActionPanelView: UIView {
   func configure(withPost post: RedditPost) {
     upvoteItem.update(title: "\(post.upvotes)")
     messageItem.update(title: "\(post.commentCount)")
+    currentPost = post
   }
 
   // MARK: Private Properties
@@ -62,13 +73,20 @@ class ActionPanelView: UIView {
     stackView.addArrangedSubview(messageItem)
     stackView.addArrangedSubview(shareItem)
   }
+
+  // MARK: ActionItemDelegate Methods
+  func actionItemReceivedTap(_ view: ActionItem) {
+    guard let post = currentPost, view === messageItem else { return }
+
+    delegate?.actionPanelViewDidTapComments(self, forPost: post)
+  }
 }
 
 protocol ActionItemDelegate: AnyObject {
   func actionItemReceivedTap(_ view: ActionItem)
 }
 
-class ActionItem: UIView {
+class ActionItem: UIView, PressableViewDelegate {
   // MARK: Public Properties
   weak var delegate: ActionItemDelegate?
 
@@ -117,6 +135,8 @@ class ActionItem: UIView {
 
     imageView.contentMode = .scaleAspectFit
     imageView.set(image: image)
+
+    imageView.delegate = self
   }
 
   private func setupTitle(_ text: String) {
@@ -131,5 +151,10 @@ class ActionItem: UIView {
     title.font = .systemFont(ofSize: 16, weight: .semibold)
     title.textColor = .white
     title.text = text
+  }
+
+  // MARK: PressableViewDelegate Methods
+  func pressableViewDidReceiveTap(_ view: PressableView) {
+    tap()
   }
 }

@@ -9,6 +9,15 @@ import Foundation
 import UIKit
 
 class FeedViewControllerContentView: UIView, RedditPostsViewDelegate {
+  // MARK: Public Properties
+  var actionPanelViewDelegate: ActionPanelViewDelegate? {
+    get {
+      actionPanel.delegate
+    } set {
+      actionPanel.delegate = newValue
+    }
+  }
+
   // MARK: Private Properties
   private let postsView = RedditPostsView()
   private let titleLabel = UILabel()

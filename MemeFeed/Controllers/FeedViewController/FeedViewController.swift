@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, ActionPanelViewDelegate {
   // MARK: Private Properties
   private let contentView = FeedViewControllerContentView()
   private let client: RedditAPIClient
@@ -30,6 +30,8 @@ class FeedViewController: UIViewController {
       make.left.equalTo(view.snp.left)
       make.right.equalTo(view.snp.right)
     }
+
+    contentView.actionPanelViewDelegate = self
   }
 
   required init?(coder: NSCoder) {
@@ -60,6 +62,21 @@ class FeedViewController: UIViewController {
       print(response)
     case .failure(let error):
       print(error)
+    }
+  }
+
+  // MARK: ActionPanelViewDelegate Methods
+  func actionPanelViewDidTapComments(_ view: ActionPanelView, forPost post: RedditPost) {
+    Task {
+      let result = await client.getComments(forPostId: post.id, inSubreddit: "memes")
+
+      switch result {
+      case .success(let test):
+
+        print(test)
+      case .failure(let error):
+        print(error)
+      }
     }
   }
 }

@@ -8,15 +8,15 @@
 import Foundation
 
 enum RedditResponse {
-  struct Root: Codable {
+  struct Root<ChildrenType: Codable>: Codable {
     let kind: String?
-    let data: Data?
+    let data: Data<ChildrenType>?
   }
 
-  struct Data: Codable {
+  struct Data<ChildrenType: Codable>: Codable {
     let after: String?
     let before: String?
-    let children: [PostResponse?]?
+    let children: [ChildrenType?]?
   }
 
   struct PostResponse: Codable {
@@ -44,5 +44,14 @@ enum RedditResponse {
     let url: String?
     let width: Int?
     let height: Int?
+  }
+
+  struct CommentsResponse: Codable {
+    let data: CommentResponseData?
+  }
+
+  struct CommentResponseData: Codable {
+    let author: String?
+    let body: String?
   }
 }

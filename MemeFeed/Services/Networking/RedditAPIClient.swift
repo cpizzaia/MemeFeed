@@ -9,6 +9,9 @@ import Foundation
 import Alamofire
 
 struct RedditAPIClient {
+  // MARK: Private Types
+  typealias RedditAPIClientResult<ResponseType: Codable> = Result<ResponseType, RemoteAPIJSONClient.ErrorResponse>
+
   // MARK: Private Static Properties
   static let baseURL = "https://www.reddit.com/"
 
@@ -16,20 +19,41 @@ struct RedditAPIClient {
   private let client: RemoteAPIJSONClient
   private let decoder: JSONDecoder
   private let postFactory: RedditPostFactory
+  private let commentFactory: RedditCommentFactory
 
   // MARK: Public Methods
   init(
     client: RemoteAPIJSONClient = .init(),
     decoder: JSONDecoder = .init(),
-    postFactory: RedditPostFactory = .init()
+    postFactory: RedditPostFactory = .init(),
+    commentFactory: RedditCommentFactory = .init()
   ) {
     self.client = client
     self.decoder = decoder
     self.postFactory = postFactory
+    self.commentFactory = commentFactory
+  }
+
+  func getComments(forPostId postId: String, inSubreddit subreddit: String) async -> Result<[RedditComment], RemoteAPIJSONClient.ErrorResponse> {
+    let result: RedditAPIClientResult<[RedditResponse.Root<RedditResponse.CommentsResponse>?]?> = await makeRequest(
+      endpoint: "r/\(subreddit)/comments/\(postId).json",
+      method: .get
+    )
+
+    switch result {
+    case .success(let response):
+      guard let root = response else { return .success([]) }
+      return .success(commentFactory.create(fromResponse: root))
+    case .failure(let error):
+      return .failure(error)
+    }
   }
 
   func getMemesPosts() async -> Result<[RedditPost], RemoteAPIJSONClient.ErrorResponse> {
-    let result = await makeRequest(endpoint: "r/memes.json", method: .get)
+    let result: RedditAPIClientResult<RedditResponse.Root<RedditResponse.PostResponse>?> = await makeRequest(
+      endpoint: "r/memes.json",
+      method: .get
+    )
 
     switch result {
     case .success(let response):
@@ -41,7 +65,7 @@ struct RedditAPIClient {
   }
 
   // MARK: Private Methods
-  private func makeRequest(endpoint: String, method: HTTPMethod) async -> Result<RedditResponse.Root?, RemoteAPIJSONClient.ErrorResponse> {
+  private func makeRequest<ResponseType: Codable>(endpoint: String, method: HTTPMethod) async -> Result<ResponseType?, RemoteAPIJSONClient.ErrorResponse> {
     let result = await client.makeRequest(
       urlString: Self.baseURL + endpoint,
       method: method
@@ -51,12 +75,13 @@ struct RedditAPIClient {
     case .success(let response):
       do {
         let root = try decoder.decode(
-          RedditResponse.Root.self,
+          ResponseType.self,
           from: response.body?.data(using: .utf8) ?? Data()
         )
 
         return .success(root)
-      } catch {
+      } catch let error {
+        print(error)
         return .success(nil)
       }
     case .failure(let error):

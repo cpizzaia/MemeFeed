@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PressableImageView: PresseableView {
+class PressableImageView: PressableView {
   // MARK: Private Properties
   private let contentImageView = UIImageView()
 
