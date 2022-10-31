@@ -64,9 +64,16 @@ class ActionPanelView: UIView {
   }
 }
 
+protocol ActionItemDelegate: AnyObject {
+  func actionItemReceivedTap(_ view: ActionItem)
+}
+
 class ActionItem: UIView {
+  // MARK: Public Properties
+  weak var delegate: ActionItemDelegate?
+
   // MARK: Private Properties
-  private let imageView = UIImageView()
+  private let imageView = PressableImageView()
   private let title = UILabel()
 
   // MARK: Public Methods
@@ -88,10 +95,16 @@ class ActionItem: UIView {
     }
   }
 
+  @objc func tap() {
+    delegate?.actionItemReceivedTap(self)
+  }
+
   // MARK: Private Methods
   private func setupViews(withImage image: UIImage, title: String, imageSize: CGSize) {
     setupImageView(withImage: image, imageSize: imageSize)
     setupTitle(title)
+
+    addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
   }
 
   private func setupImageView(withImage image: UIImage, imageSize: CGSize) {
@@ -103,7 +116,7 @@ class ActionItem: UIView {
     }
 
     imageView.contentMode = .scaleAspectFit
-    imageView.image = image
+    imageView.set(image: image)
   }
 
   private func setupTitle(_ text: String) {
