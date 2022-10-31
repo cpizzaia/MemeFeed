@@ -8,16 +8,19 @@
 import Foundation
 import UIKit
 
-class FeedViewControllerContentView: UIView {
+class FeedViewControllerContentView: UIView, RedditPostsViewDelegate {
   // MARK: Private Properties
   private let postsView = RedditPostsView()
   private let titleLabel = UILabel()
+  private let actionPanel = ActionPanelView()
 
   // MARK: Public Methods
   init() {
     super.init(frame: .zero)
 
     setupViews()
+
+    postsView.delegate = self
   }
 
   required init?(coder: NSCoder) {
@@ -32,6 +35,7 @@ class FeedViewControllerContentView: UIView {
   private func setupViews() {
     setupPostsView()
     setupTitleLabel()
+    setupActionPanel()
   }
 
   private func setupPostsView() {
@@ -50,7 +54,22 @@ class FeedViewControllerContentView: UIView {
       make.top.equalToSuperview()
     }
 
-    titleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+    titleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
     titleLabel.text = "r/Memes"
+  }
+
+  private func setupActionPanel() {
+    addSubview(actionPanel)
+
+    actionPanel.snp.makeConstraints { make in
+      make.right.equalToSuperview()
+      make.bottom.equalToSuperview().offset(-20)
+      make.width.equalTo(80)
+    }
+  }
+
+  // MARK: RedditPostsViewDelegate Methods
+  func redditPostsView(_ view: RedditPostsView, didDisplayPost post: RedditPost) {
+    actionPanel.configure(withPost: post)
   }
 }

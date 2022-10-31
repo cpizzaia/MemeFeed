@@ -17,7 +17,8 @@ struct RedditPostFactory {
         let id = postResponse.id,
         let authorName = postResponse.author,
         let upvotes = postResponse.ups,
-        let title = postResponse.title
+        let title = postResponse.title,
+        let commentCount = postResponse.num_comments
       else { return nil }
 
       let images = (postResponse.preview?.images ?? []).flatMap { imagesResponse -> [Image] in
@@ -33,7 +34,8 @@ struct RedditPostFactory {
         images: images,
         authorName: authorName,
         title: title,
-        upvotes: upvotes
+        upvotes: upvotes,
+        commentCount: commentCount
       )
     }
   }

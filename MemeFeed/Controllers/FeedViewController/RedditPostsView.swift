@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol RedditPostsViewDelegate: AnyObject {
+  func redditPostsView(_ view: RedditPostsView, didDisplayPost post: RedditPost)
+}
+
 class RedditPostsView: UIView, UITableViewDelegate, UITableViewDataSource {
   // MARK: Private Static Properties
   private static let cellReuseIdentifier = "cell"
@@ -15,6 +19,9 @@ class RedditPostsView: UIView, UITableViewDelegate, UITableViewDataSource {
   // MARK: Private Properties
   private let tableView = UITableView.init(frame: .zero)
   private var posts = [RedditPost]()
+
+  // MARK: Public Properties
+  weak var delegate: RedditPostsViewDelegate?
 
   // MARK: Public Methods
   init() {
@@ -77,5 +84,11 @@ class RedditPostsView: UIView, UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     posts.count
+  }
+
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    guard let post = posts[safe: indexPath.row] else { return }
+
+    delegate?.redditPostsView(self, didDisplayPost: post)
   }
 }

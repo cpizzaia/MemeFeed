@@ -13,6 +13,7 @@ struct RedditPost {
   let authorName: String
   let title: String
   let upvotes: Int
+  let commentCount: Int
 }
 
 struct Image {

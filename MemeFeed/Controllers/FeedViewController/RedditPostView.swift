@@ -59,11 +59,11 @@ class RedditPostView: UIView {
 
     titleLabel.snp.makeConstraints { make in
       make.bottom.equalToSuperview().offset(-20)
-      make.left.equalToSuperview().offset(20)
+      make.left.equalToSuperview().offset(16)
     }
 
     titleLabel.textColor = .white
-    titleLabel.font = .systemFont(ofSize: 17, weight: .regular)
+    titleLabel.font = .systemFont(ofSize: 15, weight: .regular)
   }
 
   private func setupAuthorLabel() {
@@ -75,7 +75,7 @@ class RedditPostView: UIView {
     }
 
     authorLabel.textColor = .white
-    authorLabel.font = .systemFont(ofSize: 17, weight: .bold)
+    authorLabel.font = .systemFont(ofSize: 17, weight: .semibold)
   }
 }
 

@@ -29,6 +29,7 @@ enum RedditResponse {
     let author: String?
     let title: String?
     let ups: Int?
+    let num_comments: Int?
   }
 
   struct PreviewImagesResponse: Codable {
