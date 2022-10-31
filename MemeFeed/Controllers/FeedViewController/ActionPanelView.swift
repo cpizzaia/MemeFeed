@@ -86,7 +86,7 @@ protocol ActionItemDelegate: AnyObject {
   func actionItemReceivedTap(_ view: ActionItem)
 }
 
-class ActionItem: UIView, PressableViewDelegate {
+class ActionItem: ExpandedHitAreaView, PressableViewDelegate {
   // MARK: Public Properties
   weak var delegate: ActionItemDelegate?
 
@@ -96,7 +96,7 @@ class ActionItem: UIView, PressableViewDelegate {
 
   // MARK: Public Methods
   init(imageString: String, title: String, imageSize: CGSize) {
-    super.init(frame: .zero)
+    super.init(expandedHitAreaDistance: 16)
 
     if let image = UIImage(named: imageString) {
       setupViews(withImage: image, title: title, imageSize: imageSize)

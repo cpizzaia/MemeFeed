@@ -20,7 +20,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
   weak var delegate: CommentsViewDelegate?
 
   // MARK: Private Properties
-  private let dismissButton = UIImageView()
+  private let dismissButton = ExpandedHitAreaImageView(expandedHitAreaDistance: 10)
   private let headerLabel = UILabel()
   private let tableView = UITableView()
   private var comments = [RedditComment]()
