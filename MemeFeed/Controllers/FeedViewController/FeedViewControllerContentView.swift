@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FeedViewControllerContentView: UIView, RedditPostsViewDelegate {
+class FeedViewControllerContentView: UIView, RedditPostsViewDelegate, CommentsViewDelegate {
   // MARK: Public Properties
   var actionPanelViewDelegate: ActionPanelViewDelegate? {
     get {
@@ -22,6 +22,7 @@ class FeedViewControllerContentView: UIView, RedditPostsViewDelegate {
   private let postsView = RedditPostsView()
   private let titleLabel = UILabel()
   private let actionPanel = ActionPanelView()
+  private let commentsView = CommentsView()
 
   // MARK: Public Methods
   init() {
@@ -40,11 +41,40 @@ class FeedViewControllerContentView: UIView, RedditPostsViewDelegate {
     postsView.configure(withPosts: posts)
   }
 
+  func configure(withComments comments: [RedditComment]) {
+    commentsView.configure(withComments: comments)
+  }
+
+  func showCommentsView() {
+    performOnMainThread {
+      UIView.animate(withDuration: 0.2, animations: {
+        self.commentsView.snp.updateConstraints { update in
+          update.height.equalTo(300)
+        }
+
+        self.layoutIfNeeded()
+      })
+    }
+  }
+
+  func hideCommentsView() {
+    performOnMainThread {
+      UIView.animate(withDuration: 0.2, animations: {
+        self.commentsView.snp.updateConstraints { update in
+          update.height.equalTo(0)
+        }
+
+        self.layoutIfNeeded()
+      })
+    }
+  }
+
   // MARK: Private Methods
   private func setupViews() {
     setupPostsView()
     setupTitleLabel()
     setupActionPanel()
+    setupCommentsView()
   }
 
   private func setupPostsView() {
@@ -77,8 +107,27 @@ class FeedViewControllerContentView: UIView, RedditPostsViewDelegate {
     }
   }
 
+  private func setupCommentsView() {
+    addSubview(commentsView)
+
+    commentsView.snp.makeConstraints { make in
+      make.height.equalTo(0)
+      make.width.equalToSuperview()
+      make.bottom.equalToSuperview()
+    }
+
+    commentsView.delegate = self
+  }
+
   // MARK: RedditPostsViewDelegate Methods
   func redditPostsView(_ view: RedditPostsView, didDisplayPost post: RedditPost) {
     actionPanel.configure(withPost: post)
+
+    hideCommentsView()
+  }
+
+  // MARK: CommentsViewDelegate Methods
+  func didTapDismissInCommentsView(_ view: CommentsView) {
+    hideCommentsView()
   }
 }

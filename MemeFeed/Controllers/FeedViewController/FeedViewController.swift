@@ -12,6 +12,7 @@ class FeedViewController: UIViewController, ActionPanelViewDelegate {
   // MARK: Private Properties
   private let contentView = FeedViewControllerContentView()
   private let client: RedditAPIClient
+  private var isRequestingComments = false
 
   // MARK: Public Methods
   init(client: RedditAPIClient = .init()) {
@@ -67,16 +68,22 @@ class FeedViewController: UIViewController, ActionPanelViewDelegate {
 
   // MARK: ActionPanelViewDelegate Methods
   func actionPanelViewDidTapComments(_ view: ActionPanelView, forPost post: RedditPost) {
+    if isRequestingComments { return }
+
+    isRequestingComments = true
     Task {
+
       let result = await client.getComments(forPostId: post.id, inSubreddit: "memes")
 
       switch result {
-      case .success(let test):
-
-        print(test)
+      case .success(let comments):
+        contentView.configure(withComments: comments)
+        contentView.showCommentsView()
       case .failure(let error):
         print(error)
       }
+
+      isRequestingComments = false
     }
   }
 }
