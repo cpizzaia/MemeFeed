@@ -128,6 +128,8 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellReuseId, for: indexPath)
 
+    cell.selectionStyle = .none
+
     if let cell = cell as? CommentTableViewCell, let comment = comments[safe: indexPath.row] {
       cell.configure(withComment: comment)
     }

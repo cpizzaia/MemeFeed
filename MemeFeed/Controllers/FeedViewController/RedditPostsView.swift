@@ -67,6 +67,8 @@ class RedditPostsView: UIView, UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellReuseIdentifier, for: indexPath)
 
+    cell.selectionStyle = .none
+
     if let postCell = cell as? RedditPostTableViewCell, let post = posts[safe: indexPath.row] {
       postCell.configure(withPost: post)
     }

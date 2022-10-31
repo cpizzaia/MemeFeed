@@ -49,7 +49,7 @@ class FeedViewControllerContentView: UIView, RedditPostsViewDelegate, CommentsVi
     performOnMainThread {
       UIView.animate(withDuration: 0.2, animations: {
         self.commentsView.snp.updateConstraints { update in
-          update.height.equalTo(300)
+          update.height.equalTo(self.frame.height * 0.6)
         }
 
         self.layoutIfNeeded()
@@ -81,7 +81,8 @@ class FeedViewControllerContentView: UIView, RedditPostsViewDelegate, CommentsVi
     addSubview(postsView)
 
     postsView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.top.right.left.equalToSuperview()
+      make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
     }
   }
 
@@ -102,7 +103,7 @@ class FeedViewControllerContentView: UIView, RedditPostsViewDelegate, CommentsVi
 
     actionPanel.snp.makeConstraints { make in
       make.right.equalToSuperview()
-      make.bottom.equalToSuperview().offset(-20)
+      make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-20)
       make.width.equalTo(80)
     }
   }

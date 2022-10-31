@@ -26,7 +26,7 @@ class FeedViewController: UIViewController, ActionPanelViewDelegate {
 
     contentView.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-      make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+      make.bottom.equalTo(view.snp.bottom)
 
       make.left.equalTo(view.snp.left)
       make.right.equalTo(view.snp.right)
