@@ -102,7 +102,7 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     addSubview(tableView)
 
     tableView.snp.makeConstraints { make in
-      make.top.equalTo(headerLabel.snp.bottom).offset(15)
+      make.top.equalTo(headerLabel.snp.bottom).offset(10)
       make.left.right.equalToSuperview()
       make.bottom.equalToSuperview().priority(999)
     }
