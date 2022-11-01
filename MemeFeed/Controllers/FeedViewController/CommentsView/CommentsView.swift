@@ -62,13 +62,16 @@ class CommentsView: UIView, UITableViewDelegate, UITableViewDataSource {
     setupTableView()
 
     backgroundColor = .init(rgb: 0xF5F5F4)
+    clipsToBounds = true
+    layer.cornerRadius = 8
+    layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
   }
 
   private func setupDismissButton() {
     addSubview(dismissButton)
 
     dismissButton.snp.makeConstraints { make in
-      make.height.width.equalTo(20)
+      make.height.width.equalTo(10)
       make.top.equalToSuperview().offset(15)
       make.right.equalToSuperview().offset(-16)
     }
